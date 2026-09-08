@@ -1,34 +1,28 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  FiArrowUp,
-  FiMessageCircle,
-  FiSearch,
-  FiX,
-} from "react-icons/fi";
+import { FiArrowUp, FiMessageCircle, FiSearch, FiX } from "react-icons/fi";
 import { finderPages } from "../data/finderPages";
 import { findPages } from "../../../utils/finderSearch";
 
 const ChatHome = () => {
-     const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
-  
-
+  console.log({ messages });
   const messagesEndRef = useRef(null);
-  
+
   // Scroll to latest message
   useEffect(() => {
-      messagesEndRef.current?.scrollIntoView({
-          behavior: "smooth",
-        });
-    }, [messages, isTyping]);
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        const trimmedMessage = message.trim();
-        const results = findPages(trimmedMessage, finderPages);
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [messages, isTyping]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const trimmedMessage = message.trim();
+    const results = findPages(trimmedMessage, finderPages);
 
     if (!trimmedMessage || isTyping) return;
 
@@ -48,23 +42,23 @@ const ChatHome = () => {
     setIsTyping(true);
 
     setTimeout(() => {
-  setMessages((prev) => [
-    ...prev,
-    {
-      id: Date.now() + 1,
-      type: "bot",
-      text:
-        results.length > 0
-          ? `I found ${results.length} page${
-              results.length > 1 ? "s" : ""
-            } that might help you.`
-          : "Sorry, I couldn't find a relevant page.",
-      results,
-    },
-  ]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          type: "bot",
+          text:
+            results.length > 0
+              ? `I found ${results.length} page${
+                  results.length > 1 ? "s" : ""
+                } that might help you.`
+              : "Sorry, I couldn't find a relevant page.",
+          results,
+        },
+      ]);
 
-  setIsTyping(false);
-}, 800);
+      setIsTyping(false);
+    }, 800);
   };
 
   const handleSuggestion = (text) => {
@@ -231,36 +225,94 @@ const ChatHome = () => {
                     </div>
                   )}
 
-                  {/* Message */}
-                  <div
-                    className={
-                      msg.type === "user"
-                        ? `
-                          max-w-[280px]
-                          rounded-2xl
-                          rounded-tr-md
-                          bg-black
-                          px-4
-                          py-3
-                          text-sm
-                          leading-5
-                          text-white
-                        `
-                        : `
-                          max-w-[280px]
-                          rounded-2xl
-                          rounded-tl-md
-                          bg-gray-100
-                          px-4
-                          py-3
-                          text-sm
-                          leading-5
-                          text-gray-700
-                        `
-                    }
-                  >
-                    {msg.text}
-                  </div>
+                 {/* Message */}
+<div
+  className={
+    msg.type === "user"
+      ? `
+        max-w-[280px]
+        rounded-2xl
+        rounded-tr-md
+        bg-black
+        px-4
+        py-3
+        text-sm
+        leading-5
+        text-white
+      `
+      : "max-w-[300px]"
+  }
+>
+  {msg.type === "user" ? (
+    <div
+      className="
+        rounded-2xl
+        rounded-tr-md
+        bg-black
+        px-4
+        py-3
+        text-sm
+        leading-5
+        text-white
+      "
+    >
+      {msg.text}
+    </div>
+  ) : (
+    <>
+      {/* Bot message */}
+      <div
+        className="
+          rounded-2xl
+          rounded-tl-md
+          bg-gray-100
+          px-4
+          py-3
+          text-sm
+          text-gray-700
+        "
+      >
+        {msg.text}
+      </div>
+
+      {/* Results */}
+      {msg.results?.length > 0 && (
+        <div className="mt-2 flex flex-col gap-1.5">
+          {msg.results.map((page) => (
+            <a
+              key={page.id}
+              href={page.url}
+              className="
+                flex
+                items-center
+                justify-between
+                rounded-lg
+                border
+                border-gray-200
+                bg-white
+                px-3
+                py-2
+                text-sm
+                text-gray-700
+                transition
+                hover:bg-gray-50
+                hover:text-gray-900
+              "
+            >
+              <span className="truncate">
+                {page.title}
+              </span>
+
+              <span className="ml-2 text-gray-400">
+                →
+              </span>
+            </a>
+          ))}
+        </div>
+      )}
+    </>
+  )}
+</div>
                 </div>
               ))}
 
