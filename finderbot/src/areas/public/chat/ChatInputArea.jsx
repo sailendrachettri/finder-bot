@@ -1,5 +1,6 @@
 import React from "react";
 import { FiArrowUp, FiMessageCircle } from "react-icons/fi";
+import TypingEffectText from "../../../reusable/TypingEffectText";
 
 const ChatInputArea = ({ message, handleSubmit, setMessage , isTyping}) => {
   return (
@@ -24,6 +25,7 @@ const ChatInputArea = ({ message, handleSubmit, setMessage , isTyping}) => {
               className="ml-2 shrink-0 text-gray-400"
               size={17}
             />
+            
 
             <input
               type="text"

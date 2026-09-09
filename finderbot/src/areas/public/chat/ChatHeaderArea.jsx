@@ -1,6 +1,7 @@
 import React from "react";
 import { FiSearch, FiX } from "react-icons/fi";
 import { TbMessageChatbot } from "react-icons/tb";
+import TypingEffectText from "../../../reusable/TypingEffectText";
 
 const ChatHeaderArea = ({ setIsOpen }) => {
   return (
@@ -14,7 +15,8 @@ const ChatHeaderArea = ({ setIsOpen }) => {
           <div>
             <h2 className="text-lg font-semibold text-primary">FinderBot</h2>
 
-            <p className="text-xs text-gray-400"> Find the right page, instantly</p>
+            
+            <TypingEffectText text1="Find the right page, instantly" style={"text-xs text-gray-400 "}/>
           </div>
         </div>
 
