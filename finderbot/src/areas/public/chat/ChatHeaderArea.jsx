@@ -1,13 +1,14 @@
 import React from "react";
 import { FiSearch, FiX } from "react-icons/fi";
+import { TbMessageChatbot } from "react-icons/tb";
 
 const ChatHeaderArea = ({ setIsOpen }) => {
   return (
     <>
       <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white">
-            <FiSearch size={17} />
+          <div className="flex p-1 items-center justify-center rounded-xl bg-primary/5 text-primary">
+            <TbMessageChatbot size={42} />
           </div>
 
           <div>

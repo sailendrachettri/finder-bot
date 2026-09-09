@@ -3,10 +3,7 @@ import { FiSearch } from "react-icons/fi";
 
 const ChatIntro = () => {
   return (
-    <div className="flex h-full flex-col items-center justify-center px-5">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-gray-700">
-        <FiSearch size={21} />
-      </div>
+    <div className="flex flex-col items-center justify-center px-5 pb-10 pt-5">
 
       <h3 className="mt-4 text-base font-semibold text-gray-900">Hi! 👋</h3>
 
