@@ -14,7 +14,7 @@ const ChatMessageArea = ({ messages, isTyping }) => {
           >
             {/* Bot Icon */}
             {msg?.type === "bot" && (
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-black text-white">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary text-white">
                 <FiSearch size={13} />
               </div>
             )}
@@ -27,7 +27,7 @@ const ChatMessageArea = ({ messages, isTyping }) => {
         max-w-[280px]
         rounded-2xl
         rounded-tr-md
-        bg-black
+        bg-primary
         px-4
         py-3
         text-sm
@@ -42,9 +42,7 @@ const ChatMessageArea = ({ messages, isTyping }) => {
                   className="
         rounded-2xl
         rounded-tr-md
-        bg-black
-        px-4
-        py-3
+        bg-primary
         text-sm
         leading-5
         text-white
