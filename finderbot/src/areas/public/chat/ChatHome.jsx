@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FiArrowUp, FiMessageCircle, FiSearch, FiX } from "react-icons/fi";
-import { finderPages } from "../data/finderPages";
+import { finderPages, topSearchPages } from "../data/finderPages";
 import { findPages } from "../../../utils/finderSearch";
 import { TbMessageChatbot } from "react-icons/tb";
 import ChatHead from "./ChatHead";
@@ -104,8 +104,11 @@ const ChatHome = () => {
             {messages.length === 0 && !isTyping && (
               <div className="flex h-full flex-col items-center px-5">
                 <ChatIntro />
-                
-                <ChatSuggestions handleSuggestion={handleSuggestion} />
+
+                <ChatSuggestions
+                  pages={topSearchPages}
+                  handleSuggestion={handleSuggestion}
+                />
               </div>
             )}
 
@@ -116,7 +119,12 @@ const ChatHome = () => {
           </div>
 
           {/* Input */}
-         <ChatInputArea handleSubmit={handleSubmit} isTyping={isTyping} message={message} setMessage={setMessage}/>
+          <ChatInputArea
+            handleSubmit={handleSubmit}
+            isTyping={isTyping}
+            message={message}
+            setMessage={setMessage}
+          />
         </div>
       )}
 

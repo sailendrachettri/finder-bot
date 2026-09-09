@@ -1,3 +1,51 @@
+export const topSearchPages = [
+  {
+    id: "employee-management",
+    title: "Employee Management 1",
+    description: "View and manage employees",
+    url: "/employees",
+    keywords: [
+      "employee",
+      "employees",
+      "staff",
+      "employee management",
+      "manage employees",
+      "employee list",
+      "staff list",
+    ],
+  },
+  {
+    id: "employee-management",
+    title: "Employee Management 2",
+    description: "View and manage employees",
+    url: "/employees",
+    keywords: [
+      "employee",
+      "employees",
+      "staff",
+      "employee management",
+      "manage employees",
+      "employee list",
+      "staff list",
+    ],
+  },
+  {
+    id: "employee-management 3",
+    title: "Employee Management 3",
+    description: "View and manage employees",
+    url: "/employees",
+    keywords: [
+      "employee",
+      "employees",
+      "staff",
+      "employee management",
+      "manage employees",
+      "employee list",
+      "staff list",
+    ],
+  },
+];
+
 export const finderPages = [
   // =========================
   // Employees
@@ -332,7 +380,8 @@ export const finderPages = [
   {
     id: "engineering-department",
     title: "Engineering Department",
-    description: "View employees and information for the engineering department",
+    description:
+      "View employees and information for the engineering department",
     url: "/departments/engineering",
     keywords: [
       "engineering department",
