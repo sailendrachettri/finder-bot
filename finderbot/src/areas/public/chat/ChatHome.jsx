@@ -2,13 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { FiArrowUp, FiMessageCircle, FiSearch, FiX } from "react-icons/fi";
 import { finderPages } from "../data/finderPages";
 import { findPages } from "../../../utils/finderSearch";
+import { TbMessageChatbot } from "react-icons/tb";
+
 
 const ChatHome = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
-  console.log({ messages });
+  // console.log({ messages });
   const messagesEndRef = useRef(null);
 
   // Scroll to latest message
@@ -421,16 +423,16 @@ const ChatHome = () => {
             items-center
             justify-center
             rounded-full
-            bg-black
+            bg-primary
             text-white
             shadow-lg
             transition
             hover:scale-105
-            hover:bg-gray-800
+            hover:bg-primary/90 cursor-pointer
           "
           aria-label="Open FinderBot"
         >
-          <FiSearch size={23} />
+          <TbMessageChatbot size={43} />
         </button>
       )}
     </>
