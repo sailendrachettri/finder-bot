@@ -1,6 +1,7 @@
 import React from "react";
 import ChatTypingIndicator from "./ChatTypingIndicator";
 import { FiSearch } from "react-icons/fi";
+import { TbMessageChatbot } from "react-icons/tb";
 
 const ChatMessageArea = ({ messages, isTyping }) => {
     console.log({messages})
@@ -15,7 +16,7 @@ const ChatMessageArea = ({ messages, isTyping }) => {
             {/* Bot Icon */}
             {msg?.type === "bot" && (
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary text-white">
-                <FiSearch size={13} />
+                <TbMessageChatbot size={18} />
               </div>
             )}
 

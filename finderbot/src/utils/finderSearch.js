@@ -48,7 +48,10 @@ export const findPages = (query, pages) => {
     };
   });
 
+ 
+
   return results
     .filter((page) => page.score > 0)
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4);
 };
