@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import ChatTypingIndicator from "./ChatTypingIndicator";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiUser, FiUserMinus } from "react-icons/fi";
 import { TbMessageChatbot } from "react-icons/tb";
 import { TbExternalLinkFilled } from "react-icons/tb";
-
 
 const ChatMessageArea = ({ messages, isTyping }) => {
   // console.log({ messages });
@@ -23,7 +22,6 @@ const ChatMessageArea = ({ messages, isTyping }) => {
                 <TbMessageChatbot size={18} />
               </div>
             )}
-
             {/* Message */}
             <div
               className={
@@ -89,7 +87,9 @@ const ChatMessageArea = ({ messages, isTyping }) => {
                     <div className="mt-2 flex flex-col gap-1.5 group">
                       {msg?.results?.map((page) => (
                         <a
-                        onMouseOver={()=>{setPageId(page?.id)}}
+                          onMouseOver={() => {
+                            setPageId(page?.id);
+                          }}
                           key={page?.id}
                           href={page?.url}
                           className="
@@ -111,12 +111,25 @@ const ChatMessageArea = ({ messages, isTyping }) => {
                         >
                           <span className="truncate">{page?.title}</span>
 
-                          <span className="ml-2 text-gray-400"><TbExternalLinkFilled className={`${pageId == page?.id ? "group-hover:text-primary" : ""} `} /></span>
+                          <span className="ml-2 text-gray-400">
+                            <TbExternalLinkFilled
+                              className={`${pageId == page?.id ? "group-hover:text-primary" : ""} `}
+                            />
+                          </span>
                         </a>
                       ))}
                     </div>
                   )}
                 </>
+              )}
+            </div>
+            {/* User Icon - RIGHT SIDE */}{" "}
+            <div className="ms-3">
+              {msg?.type === "user" && (
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary text-white">
+                  {" "}
+                  <FiUser size={17} />{" "}
+                </div>
               )}
             </div>
           </div>
