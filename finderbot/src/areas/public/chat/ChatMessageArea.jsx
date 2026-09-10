@@ -4,10 +4,10 @@ import { FiSearch } from "react-icons/fi";
 import { TbMessageChatbot } from "react-icons/tb";
 
 const ChatMessageArea = ({ messages, isTyping }) => {
-    console.log({messages})
+  console.log({ messages });
   return (
     <>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 ">
         {messages?.map((msg) => (
           <div
             key={msg?.id}
@@ -24,8 +24,15 @@ const ChatMessageArea = ({ messages, isTyping }) => {
             <div
               className={
                 msg?.type === "user"
-                  ? `
-        max-w-[280px]
+                  ? "flex max-w-[280px] justify-end"
+                  : "max-w-[300px]"
+              }
+            >
+              {msg?.type === "user" ? (
+                /* User message */
+                <div
+                  className="
+        relative
         rounded-2xl
         rounded-tr-md
         bg-primary
@@ -34,19 +41,14 @@ const ChatMessageArea = ({ messages, isTyping }) => {
         text-sm
         leading-5
         text-white
-      `
-                  : "max-w-[300px]"
-              }
-            >
-              {msg?.type === "user" ? (
-                <div
-                  className="
-        rounded-2xl
-        rounded-tr-md
-        bg-primary
-        text-sm
-        leading-5
-        text-white
+
+        after:absolute
+        after:-right-1
+        after:top-0
+        after:border-b-[10px]
+        after:border-l-[10px]
+        after:border-b-transparent
+        after:border-l-primary
       "
                 >
                   {msg?.text}
@@ -56,13 +58,23 @@ const ChatMessageArea = ({ messages, isTyping }) => {
                   {/* Bot message */}
                   <div
                     className="
+          relative
           rounded-2xl
           rounded-tl-md
-          bg-gray-100
+          bg-primary/10
           px-4
           py-3
           text-sm
+          leading-5
           text-gray-700
+
+          after:absolute
+          after:-left-2
+          after:top-0
+          after:border-b-[10px]
+          after:border-r-[10px]
+          after:border-b-transparent
+          after:border-r-gray-100
         "
                   >
                     {msg?.text}

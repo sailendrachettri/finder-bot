@@ -2,12 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { FiArrowUp, FiMessageCircle, FiSearch, FiX } from "react-icons/fi";
 import { finderPages, topSearchPages } from "../data/finderPages";
 import { findPages } from "../../../utils/finderSearch";
-import { TbMessageChatbot } from "react-icons/tb";
 import ChatHead from "./ChatHead";
 import ChatHeaderArea from "./ChatHeaderArea";
 import ChatIntro from "./ChatIntro";
 import ChatSuggestions from "./ChatSuggestions";
-import ChatTypingIndicator from "./ChatTypingIndicator";
 import ChatInputArea from "./ChatInputArea";
 import ChatMessageArea from "./ChatMessageArea";
 
@@ -64,7 +62,7 @@ const ChatHome = () => {
               ? `I found ${results.length} page${
                   results.length > 1 ? "s" : ""
                 } that might help you.`
-              : "Sorry, I couldn't find a relevant page.",
+              : "Sorry, I couldn't find a relevant details.",
           results,
         },
       ]);
@@ -99,7 +97,7 @@ const ChatHome = () => {
           <ChatHeaderArea setIsOpen={setIsOpen} />
 
           {/* Conversation */}
-          <div className="flex-1 overflow-y-auto p-4">
+          <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
             {/* Empty State */}
             {messages.length === 0 && !isTyping && (
               <div className="flex h-full flex-col items-center px-5">

@@ -1,21 +1,82 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
+import { TbMessageChatbot } from "react-icons/tb";
 
 const ChatTypingIndicator = ({ isTyping }) => {
   return (
     <>
       {isTyping && (
         <div className="flex gap-3">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-black text-white">
-            <FiSearch size={13} />
+          {/* Bot Icon */}
+          <div
+            className="
+              flex
+              h-7
+              w-7
+              shrink-0
+              items-center
+              justify-center
+              rounded-lg
+              bg-primary
+              text-white
+            "
+          >
+            <TbMessageChatbot size={19} />
           </div>
 
-          <div className="flex items-center gap-1 rounded-2xl rounded-tl-md bg-gray-100 px-4 py-3">
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-gray-400 [animation-delay:-0.3s]" />
+          {/* Typing Bubble */}
+          <div
+            className="
+              relative
+              flex
+              h-[38px]
+              items-center
+              gap-1.5
+              rounded-2xl
+              rounded-tl-md
+              bg-primary/10
+              px-4
 
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-gray-400 [animation-delay:-0.15s]" />
+              after:absolute
+              after:-left-2
+              after:top-0
+              after:border-b-[10px]
+              after:border-r-[10px]
+              after:border-b-transparent
+              after:border-r-gray-100
+            "
+          >
+            <span
+              className="
+                h-1.5
+                w-1.5
+                animate-bounce
+                rounded-full
+                bg-primary
+                [animation-delay:-0.3s]
+              "
+            />
 
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-gray-400" />
+            <span
+              className="
+                h-1.5
+                w-1.5
+                animate-bounce
+                rounded-full
+                bg-primary
+                [animation-delay:-0.15s]
+              "
+            />
+
+            <span
+              className="
+                h-1.5
+                w-1.5
+                animate-bounce
+                rounded-full
+                bg-primary
+              "
+            />
           </div>
         </div>
       )}
