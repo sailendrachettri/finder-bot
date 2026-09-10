@@ -13,7 +13,7 @@ const ChatHeaderArea = ({ setIsOpen }) => {
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold text-primary">FinderBot</h2>
+            <h2 className="text-lg font-semibold text-primary">PortalGuide</h2>
 
             
             <TypingEffectText text1="Find the right page, instantly" style={"text-xs text-gray-400 "}/>

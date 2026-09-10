@@ -12,14 +12,14 @@ const ChatSuggestions = ({ pages, submitMessage }) => {
           className="
             rounded-xl
             border
-            border-gray-200
+            border-primary/20
             px-3
             py-2.5
             text-left
             text-xs
             text-gray-600
-            transition
-            hover:bg-gray-50
+            transition cursor-pointer
+            hover:bg-primary/5
             hover:text-gray-900
           "
         >

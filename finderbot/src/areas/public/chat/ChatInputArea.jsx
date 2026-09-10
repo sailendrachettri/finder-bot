@@ -31,7 +31,7 @@ const ChatInputArea = ({ message, handleSubmit, setMessage , isTyping}) => {
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Ask FinderBot..."
+              placeholder="What are you looking for?"
               disabled={isTyping}
               className="
                         h-11
