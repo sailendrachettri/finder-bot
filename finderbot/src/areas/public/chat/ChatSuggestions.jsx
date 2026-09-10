@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChatSuggestions = ({handleSuggestion, pages }) => {
+const ChatSuggestions = ({ pages, submitMessage }) => {
  
 
   return (
@@ -8,7 +8,7 @@ const ChatSuggestions = ({handleSuggestion, pages }) => {
       {pages?.map((suggestion) => (
         <button
           key={suggestion.id}
-          onClick={() => handleSuggestion(suggestion.title)}
+         onClick={() => submitMessage(suggestion.title)}
           className="
             rounded-xl
             border

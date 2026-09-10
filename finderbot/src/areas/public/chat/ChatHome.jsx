@@ -28,13 +28,19 @@ const ChatHome = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    submitMessage(message);
+  };
 
-    const trimmedMessage = message.trim();
-    const results = findPages(trimmedMessage, finderPages);
+  const handleSuggestion = (text) => {
+    setMessage(text);
+  };
 
+  const submitMessage = (text) => {
+    const trimmedMessage = text.trim();
     if (!trimmedMessage || isTyping) return;
 
-    // Add user message
+    const results = findPages(trimmedMessage, finderPages);
+
     setMessages((prev) => [
       ...prev,
       {
@@ -45,8 +51,6 @@ const ChatHome = () => {
     ]);
 
     setMessage("");
-
-    // Simulate FinderBot thinking
     setIsTyping(true);
 
     setTimeout(() => {
@@ -67,10 +71,6 @@ const ChatHome = () => {
 
       setIsTyping(false);
     }, 800);
-  };
-
-  const handleSuggestion = (text) => {
-    setMessage(text);
   };
 
   return (
@@ -107,7 +107,7 @@ const ChatHome = () => {
 
                 <ChatSuggestions
                   pages={topSearchPages}
-                  handleSuggestion={handleSuggestion}
+                  submitMessage={submitMessage}
                 />
               </div>
             )}
