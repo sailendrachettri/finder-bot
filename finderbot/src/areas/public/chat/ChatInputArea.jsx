@@ -1,6 +1,5 @@
 import React from "react";
 import { FiArrowUp, FiMessageCircle } from "react-icons/fi";
-import TypingEffectText from "../../../reusable/TypingEffectText";
 
 const ChatInputArea = ({ message, handleSubmit, setMessage , isTyping}) => {
   return (

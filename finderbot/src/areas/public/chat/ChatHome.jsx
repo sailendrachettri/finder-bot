@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { FiArrowUp, FiMessageCircle, FiSearch, FiX } from "react-icons/fi";
 import { finderPages, topSearchPages } from "../data/finderPages";
 import { findPages } from "../../../utils/finderSearch";
 import ChatHead from "./ChatHead";
@@ -14,8 +13,13 @@ const ChatHome = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
-  // console.log({ messages });
+
   const messagesEndRef = useRef(null);
+
+  // Realtime search suggestions
+  const searchSuggestions = message.trim()
+    ? findPages(message, finderPages, 3)
+    : [];
 
   // Scroll to latest message
   useEffect(() => {
@@ -29,15 +33,12 @@ const ChatHome = () => {
     submitMessage(message);
   };
 
-  const handleSuggestion = (text) => {
-    setMessage(text);
-  };
-
   const submitMessage = (text) => {
     const trimmedMessage = text.trim();
+
     if (!trimmedMessage || isTyping) return;
 
-    const results = findPages(trimmedMessage, finderPages);
+    const results = findPages(trimmedMessage, finderPages, 4);
 
     setMessages((prev) => [
       ...prev,
@@ -62,7 +63,7 @@ const ChatHome = () => {
               ? `I found ${results.length} page${
                   results.length > 1 ? "s" : ""
                 } that might help you.`
-              : "Sorry, I couldn't find a relevant details.",
+              : "Sorry, I couldn't find any relevant details.",
           results,
         },
       ]);
@@ -73,7 +74,6 @@ const ChatHome = () => {
 
   return (
     <>
-      {/* FinderBot */}
       {isOpen && (
         <div
           className="
@@ -98,20 +98,55 @@ const ChatHome = () => {
 
           {/* Conversation */}
           <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
-            {/* Empty State */}
+
+            {/* Initial Empty State */}
             {messages.length === 0 && !isTyping && (
-              <div className="flex h-full flex-col items-center px-5">
+              <div className="flex flex-col items-center px-5">
                 <ChatIntro />
 
-                <ChatSuggestions
-                  pages={topSearchPages}
-                  submitMessage={submitMessage}
-                />
+                {/* 
+                  No text typed:
+                  Show default suggestions
+                */}
+                {!message.trim() && (
+                  <ChatSuggestions
+                    pages={topSearchPages}
+                    submitMessage={submitMessage}
+                  />
+                )}
+
+                {/* 
+                  User is typing:
+                  Show realtime suggestions if found
+                */}
+                {message.trim() && searchSuggestions.length > 0 && (
+                  <ChatSuggestions
+                    pages={searchSuggestions || topSearchPages}
+                    submitMessage={submitMessage}
+                  />
+                )}
               </div>
             )}
 
             {/* Messages */}
-            <ChatMessageArea isTyping={isTyping} messages={messages} />
+            <ChatMessageArea
+              isTyping={isTyping}
+              messages={messages}
+            />
+
+            {/* 
+              Suggestions AFTER first message
+              Show them below the messages
+            */}
+            {messages.length > 0 &&
+              !isTyping &&
+              message.trim() &&
+              searchSuggestions.length > 0 && (
+                <ChatSuggestions
+                  pages={searchSuggestions}
+                  submitMessage={submitMessage}
+                />
+              )}
 
             <div ref={messagesEndRef} />
           </div>
@@ -122,12 +157,16 @@ const ChatHome = () => {
             isTyping={isTyping}
             message={message}
             setMessage={setMessage}
+            
           />
         </div>
       )}
 
-      {/* Floating FinderBot Button */}
-      <ChatHead isOpen={isOpen} setIsOpen={setIsOpen} />
+      {/* Floating Button */}
+      <ChatHead
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
     </>
   );
 };
