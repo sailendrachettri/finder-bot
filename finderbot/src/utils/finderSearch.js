@@ -1,4 +1,5 @@
 
+const MAX_RESULTS = 5;
 
 export const findPages = (query, pages) => {
   const normalizedQuery = query.toLowerCase().trim();
@@ -53,5 +54,5 @@ export const findPages = (query, pages) => {
   return results
     .filter((page) => page.score > 0)
     .sort((a, b) => b.score - a.score)
-    .slice(0, 4);
+    .slice(0, MAX_RESULTS);
 };
