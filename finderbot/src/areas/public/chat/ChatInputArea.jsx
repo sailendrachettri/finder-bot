@@ -57,10 +57,10 @@ const ChatInputArea = ({ message, handleSubmit, setMessage , isTyping}) => {
                         items-center
                         justify-center
                         rounded-lg
-                        bg-black
+                        bg-primary
                         text-white
                         transition
-                        hover:bg-gray-800
+                        hover:bg-primary/90 cursor-pointer
                         disabled:cursor-not-allowed
                         disabled:bg-gray-200
                         disabled:text-gray-400
